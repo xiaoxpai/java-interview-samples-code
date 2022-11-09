@@ -4,6 +4,15 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+
+/**
+ *  Monad设计模式：
+ *      目标是：构造流计算
+ *      三个特点：
+ *      1.一个泛型的构造函数 。比如Optional<T>
+ *      2.不改变泛型的运算操作，内容是非泛型计算。例如：Optional<R>map(T->R)
+ *      3.泛型类型不变。比如可以是Optional<Integer>到Optional<String>，但还是Optional<T>类型
+ */
 public class Event<T>{
 
     T data;
@@ -27,7 +36,12 @@ public class Event<T>{
                     '}';
         }
     }
-
+    
+   /**
+     *
+     * 将整数转成EventData 对象
+     *
+     */
     static class Transforms {
         static EventData transform(Integer id) {
             switch(id) {
@@ -45,6 +59,7 @@ public class Event<T>{
         }
     }
 
+    
     @FunctionalInterface
     interface FN<A, B> {
         B apply(A a);
